@@ -66,83 +66,6 @@ def fetch_top_selling_products():
     except Exception as e:
         return f"❌ Error fetching data: {str(e)}"
 
-# ✅ Fetch Sales Trends Over Time
-def fetch_sales_trends():
-    print("🔄 Fetching sales trends...")
-
-    try:
-        conn = connect_db()
-        cursor = conn.cursor()
-
-        cursor.execute("""
-            SELECT TO_CHAR(s.sale_date, 'YYYY-MM') AS month, SUM(s.sale_amount) AS total_sales
-            FROM sales s
-            GROUP BY month
-            ORDER BY month;
-        """)
-
-        rows = cursor.fetchall()
-        df = pd.DataFrame(rows, columns=["Month", "Total Sales"])
-        cursor.close()
-        conn.close()
-
-        return df if not df.empty else "❌ No sales data found."
-
-    except Exception as e:
-        return f"❌ Error fetching data: {str(e)}"
-
-# ✅ Fetch Sales by Region
-def fetch_sales_by_region():
-    print("🔄 Fetching sales by region...")
-
-    try:
-        conn = connect_db()
-        cursor = conn.cursor()
-
-        cursor.execute("""
-            SELECT r.region_name, SUM(s.sale_amount) AS total_sales
-            FROM sales s
-            JOIN regions r ON s.region_id = r.id
-            GROUP BY r.region_name
-            ORDER BY total_sales DESC;
-        """)
-
-        rows = cursor.fetchall()
-        df = pd.DataFrame(rows, columns=["Region", "Total Sales"])
-        cursor.close()
-        conn.close()
-
-        return df if not df.empty else "❌ No sales data found."
-
-    except Exception as e:
-        return f"❌ Error fetching data: {str(e)}"
-
-# ✅ Fetch Sales for a Specific Product
-def fetch_sales_by_product(product_name):
-    print(f"🔄 Fetching sales data for {product_name}...")
-
-    try:
-        conn = connect_db()
-        cursor = conn.cursor()
-
-        cursor.execute("""
-            SELECT p.product_name, SUM(s.quantity) AS total_sold, SUM(s.sale_amount) AS revenue
-            FROM sales s
-            JOIN products p ON s.product_id = p.id
-            WHERE p.product_name ILIKE %s
-            GROUP BY p.product_name;
-        """, (product_name,))
-
-        rows = cursor.fetchall()
-        df = pd.DataFrame(rows, columns=["Product Name", "Total Sold", "Total Revenue"])
-        cursor.close()
-        conn.close()
-
-        return df if not df.empty else f"❌ No sales data found for {product_name}."
-
-    except Exception as e:
-        return f"❌ Error fetching data: {str(e)}"
-
 # ✅ Fetch Sales by Category
 def fetch_sales_by_category():
     print("🔄 Fetching category sales...")
@@ -170,9 +93,9 @@ def fetch_sales_by_category():
     except Exception as e:
         return f"❌ Error fetching data: {str(e)}"
 
-# ✅ Fetch Sales by Time Period
-def fetch_sales_by_time():
-    print("🔄 Fetching time-based sales...")
+# ✅ Fetch Sales Trends Over Time
+def fetch_sales_trends():
+    print("🔄 Fetching sales trends...")
 
     try:
         conn = connect_db()
@@ -190,7 +113,38 @@ def fetch_sales_by_time():
         cursor.close()
         conn.close()
 
-        return df if not df.empty else "❌ No sales data found for the selected time period."
+        return df if not df.empty else "❌ No sales data found."
+
+    except Exception as e:
+        return f"❌ Error fetching data: {str(e)}"
+
+# ✅ Fetch Sales Comparison for Q1 vs Q2
+def fetch_sales_q1_vs_q2():
+    print("🔄 Fetching Q1 vs Q2 sales...")
+
+    try:
+        conn = connect_db()
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            SELECT 
+                CASE 
+                    WHEN EXTRACT(QUARTER FROM s.sale_date) = 1 THEN 'Q1' 
+                    WHEN EXTRACT(QUARTER FROM s.sale_date) = 2 THEN 'Q2' 
+                END AS quarter, 
+                SUM(s.sale_amount) AS total_sales
+            FROM sales s
+            WHERE EXTRACT(QUARTER FROM s.sale_date) IN (1, 2)
+            GROUP BY quarter
+            ORDER BY quarter;
+        """)
+
+        rows = cursor.fetchall()
+        df = pd.DataFrame(rows, columns=["Quarter", "Total Sales"])
+        cursor.close()
+        conn.close()
+
+        return df if not df.empty else "❌ No sales data found for Q1 vs Q2."
 
     except Exception as e:
         return f"❌ Error fetching data: {str(e)}"
@@ -198,6 +152,13 @@ def fetch_sales_by_time():
 # ✅ Streamlit UI
 st.title("💬 AI Sales Chatbot")
 st.write("Ask me about sales trends, top-selling products, and more!")
+
+# ✅ Display Sample Queries for User Help
+st.subheader("🔹 Example Queries You Can Ask:")
+st.write("- **What are the top selling products?**")
+st.write("- **Compare sales in Q1 and Q2**")
+st.write("- **Show me sales by category**")
+st.write("- **What are the top selling products?**")
 
 query = st.text_input("💬 Ask a sales-related query:")
 
@@ -216,28 +177,17 @@ if st.button("Ask Chatbot"):
         st.write(df)
         st.line_chart(df.set_index("Month"))
 
-    elif query_intent == "sales_by_region":
-        st.write("🔍 Fetching sales by region...")
-        df = fetch_sales_by_region()
-        st.write(df)
-        st.bar_chart(df.set_index("Region"))
-
-    elif query_intent == "product_sales":
-        product_name = query.split("for")[-1].strip()
-        st.write(f"🔍 Fetching sales for {product_name}...")
-        df = fetch_sales_by_product(product_name)
-        st.write(df)
-
     elif query_intent == "category_sales":
         st.write("🔍 Fetching category sales...")
         df = fetch_sales_by_category()
         st.write(df)
         st.bar_chart(df.set_index("Category"))
 
-    elif query_intent == "time_based":
-        st.write("🔍 Fetching time-based sales...")
-        df = fetch_sales_by_time()
+    elif "q1" in query.lower() and "q2" in query.lower():
+        st.write("🔍 Fetching sales comparison for Q1 vs Q2...")
+        df = fetch_sales_q1_vs_q2()
         st.write(df)
+        st.bar_chart(df.set_index("Quarter"))
 
     else:
-        st.write("🤖 Sorry, I didn't understand that. Try asking about 'top selling products', 'sales trends', or 'sales by region'.")
+        st.write("🤖 Sorry, I didn't understand that. Try asking about 'top selling products', 'sales trends', 'Q1 vs Q2', or 'sales by category'.")
