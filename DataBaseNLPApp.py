@@ -9,9 +9,10 @@ st.write("Ask me about sales trends, top-selling products, and more!")
 # ✅ Database Connection
 DB_NAME = "neondb"
 DB_USER = "neondb_owner"
-DB_PASSWORD = "your-password-here"
-DB_HOST = "your-host-here"
+DB_PASSWORD = "npg_68rBGRMzfIFv"
+DB_HOST = "ep-quiet-mountain-a9z5li2u-pooler.gwc.azure.neon.tech"
 DB_PORT = "5432"
+
 
 def connect_db():
     """Establish connection to Neon PostgreSQL"""
