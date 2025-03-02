@@ -157,12 +157,12 @@ st.write("Ask me about sales trends, top-selling products, and more!")
 st.subheader("🔹 Example Queries You Can Ask:")
 st.markdown("""
 <p style='margin:0; padding:0; line-height:1;'>
-<b>What are the top selling products?</b><br>
-<b>Show me high-value sales transactions (over $1000)</b><br>
-<b>Show me tablet sales trends by month</b><br>
-<b>Compare sales in Q1 and Q2</b><br>
-<b>Show me sales by category</b><br>
-<b>What are the top selling products?</b>
+What are the top selling products?<br>
+Show me high-value sales transactions (over $1000)<br>
+Show me tablet sales trends by month<br>
+Compare sales in Q1 and Q2<br>
+Show me sales by category<br>
+What are the top selling products?
 </p>
 """, unsafe_allow_html=True)
 query = st.text_input("💬 Ask a sales-related query:")
