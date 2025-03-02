@@ -155,13 +155,16 @@ st.write("Ask me about sales trends, top-selling products, and more!")
 
 # ✅ Display Sample Queries for User Help
 st.subheader("🔹 Example Queries You Can Ask:")
-st.markdown("*What are the top selling products?*")
-st.markdown("*Show me high-value sales transactions (over $1000)*")
-st.markdown("*Show me tablet sales trends by month*")
-st.markdown("*Compare sales in Q1 and Q2*")
-st.markdown("*Show me sales by category*")
-st.markdown("*What are the top selling products?*")
-
+st.markdown("""
+<p style='margin:0; padding:0; line-height:1;'>
+<b>What are the top selling products?</b><br>
+<b>Show me high-value sales transactions (over $1000)</b><br>
+<b>Show me tablet sales trends by month</b><br>
+<b>Compare sales in Q1 and Q2</b><br>
+<b>Show me sales by category</b><br>
+<b>What are the top selling products?</b>
+</p>
+""", unsafe_allow_html=True)
 query = st.text_input("💬 Ask a sales-related query:")
 
 if st.button("Ask Chatbot"):
