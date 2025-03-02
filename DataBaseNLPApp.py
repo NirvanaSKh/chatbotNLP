@@ -156,11 +156,11 @@ st.write("Ask me about sales trends, top-selling products, and more!")
 # ✅ Display Sample Queries for User Help
 st.subheader("🔹 Example Queries You Can Ask:")
 st.write("*What are the top selling products?*")
-st.write("*Show me high-value sales transactions (over $1000)**")
-st.write("*Show me tablet sales trends by month**")
-st.write("*Compare sales in Q1 and Q2**")
-st.write("*Show me sales by category**")
-st.write("*What are the top selling products?**")
+st.write("*Show me high-value sales transactions (over $1000)*")
+st.write("*Show me tablet sales trends by month*")
+st.write("*Compare sales in Q1 and Q2*")
+st.write("*Show me sales by category*")
+st.write("*What are the top selling products?*")
 
 query = st.text_input("💬 Ask a sales-related query:")
 
