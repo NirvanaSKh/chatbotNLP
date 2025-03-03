@@ -1,0 +1,134 @@
+[
+    {
+        "Category": "Comparison & Ranking",
+        "Purpose": "Compare categories",
+        "Best Graph Type": "Bar chart, Column chart",
+        "Rules for Usage": "Sort by value to enhance readability."
+    },
+    {
+        "Category": "Comparison & Ranking",
+        "Purpose": "Compare multiple series",
+        "Best Graph Type": "Grouped bar chart, Grouped column chart",
+        "Rules for Usage": "Use different colors for each series but keep them distinguishable."
+    },
+    {
+        "Category": "Comparison & Ranking",
+        "Purpose": "Show ranking",
+        "Best Graph Type": "Bar chart (sorted), Lollipop chart",
+        "Rules for Usage": "Sort from highest to lowest for easy comparison."
+    },
+    {
+        "Category": "Comparison & Ranking",
+        "Purpose": "Show deviation from a reference point",
+        "Best Graph Type": "Bullet chart, Deviation bar chart",
+        "Rules for Usage": "Highlight differences from a baseline value."
+    },
+    {
+        "Category": "Trend Over Time",
+        "Purpose": "Show overall trends",
+        "Best Graph Type": "Line chart",
+        "Rules for Usage": "Use a continuous line for smooth data points. Avoid too many data labels."
+    },
+    {
+        "Category": "Trend Over Time",
+        "Purpose": "Compare multiple trends",
+        "Best Graph Type": "Multi-line chart",
+        "Rules for Usage": "Use different colors or dashed lines. Keep a legend or labels close to the lines."
+    },
+    {
+        "Category": "Trend Over Time",
+        "Purpose": "Show cumulative trends",
+        "Best Graph Type": "Area chart",
+        "Rules for Usage": "Best when emphasizing the total growth over time. Avoid excessive stacking."
+    },
+    {
+        "Category": "Trend Over Time",
+        "Purpose": "Highlight seasonal trends",
+        "Best Graph Type": "Heatmap, Calendar chart",
+        "Rules for Usage": "Use when trends have daily, weekly, or yearly patterns."
+    },
+    {
+        "Category": "Distribution Analysis",
+        "Purpose": "Show data distribution",
+        "Best Graph Type": "Histogram",
+        "Rules for Usage": "Use bin widths that reveal patterns without over-smoothing."
+    },
+    {
+        "Category": "Distribution Analysis",
+        "Purpose": "Compare multiple distributions",
+        "Best Graph Type": "Box plot (Box and Whisker Plot)",
+        "Rules for Usage": "Best for detecting outliers and medians. Keep axis scales consistent."
+    },
+    {
+        "Category": "Distribution Analysis",
+        "Purpose": "Show density",
+        "Best Graph Type": "Violin plot, Ridgeline plot",
+        "Rules for Usage": "Use when a histogram isn\u2019t enough to reveal density differences."
+    },
+    {
+        "Category": "Relationship & Correlation",
+        "Purpose": "Show correlation between two variables",
+        "Best Graph Type": "Scatter plot",
+        "Rules for Usage": "Use when both axes have numerical values. Add a trend line for clarity."
+    },
+    {
+        "Category": "Relationship & Correlation",
+        "Purpose": "Show correlation and category",
+        "Best Graph Type": "Bubble chart",
+        "Rules for Usage": "Size represents a third variable. Avoid excessive overlap."
+    },
+    {
+        "Category": "Relationship & Correlation",
+        "Purpose": "Show clusters in data",
+        "Best Graph Type": "Scatter plot with color grouping",
+        "Rules for Usage": "Use different colors for categories to distinguish clusters."
+    },
+    {
+        "Category": "Part-to-Whole Relationships",
+        "Purpose": "Show proportions",
+        "Best Graph Type": "Pie chart, Donut chart",
+        "Rules for Usage": "Only use when categories sum to 100%. Limit to 3\u20135 slices for clarity."
+    },
+    {
+        "Category": "Part-to-Whole Relationships",
+        "Purpose": "Compare multiple part-to-whole relationships",
+        "Best Graph Type": "Stacked bar chart, Stacked area chart",
+        "Rules for Usage": "Ensure colors contrast well."
+    },
+    {
+        "Category": "Geospatial Data",
+        "Purpose": "Show values by location",
+        "Best Graph Type": "Choropleth map",
+        "Rules for Usage": "Use color gradients but avoid misleading contrasts."
+    },
+    {
+        "Category": "Geospatial Data",
+        "Purpose": "Show specific locations",
+        "Best Graph Type": "Dot map",
+        "Rules for Usage": "Use when exact placement is important (e.g., store locations)."
+    },
+    {
+        "Category": "Hierarchical Data",
+        "Purpose": "Show nested categories",
+        "Best Graph Type": "Treemap, Sunburst chart",
+        "Rules for Usage": "Treemaps are better for space efficiency, sunburst charts are better for readability."
+    },
+    {
+        "Category": "Hierarchical Data",
+        "Purpose": "Show organizational relationships",
+        "Best Graph Type": "Org chart, Tree diagram",
+        "Rules for Usage": "Keep hierarchy levels clear and avoid excessive branching."
+    },
+    {
+        "Category": "Network Data",
+        "Purpose": "Show connections between entities",
+        "Best Graph Type": "Network diagram",
+        "Rules for Usage": "Use force-directed graphs to position nodes."
+    },
+    {
+        "Category": "Network Data",
+        "Purpose": "Show process flow",
+        "Best Graph Type": "Sankey diagram",
+        "Rules for Usage": "Use to show energy, financial, or data flows."
+    }
+]
